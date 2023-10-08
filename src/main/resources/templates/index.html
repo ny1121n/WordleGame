@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wordle Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        h1 {
+            color: #333;
+        }
+
+        p {
+            color: #666;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        input {
+            padding: 5px;
+        }
+
+        button {
+            padding: 5px 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Wordle Game</h1>
+    <p th:text="${message}"></p>
+    <p>Enter a word with 5 letters. T means correct index, M means correct letter but wrong index, F means wrong letter.</p>
+
+    <!-- Display the word to be guessed -->
+    <p>Word: <span th:text="${word}"></span></p>
+
+    <!-- Display the results with color codes -->
+    <p>Results:
+        <span th:each="result : ${results}">
+            <span th:style="${result == 'T' ? 'color: green;' : (result == 'M' ? 'color: yellow;' : 'color: red;')}" th:text="${result}"></span>
+        </span>
+    </p>
+
+    <!-- Display the number of attempts -->
+    <p>Attempts: <span th:text="${attempts}"></span></p>
+
+    <!-- Form for making guesses -->
+    <form method="post" th:action="@{/}">
+        <input type="text" name="guess" required pattern="[a-zA-Z]{5}" title="Enter a word with 5 letters"/>
+        <button type="submit">Make Guess</button>
+    </form>
+</body>
+</html>
