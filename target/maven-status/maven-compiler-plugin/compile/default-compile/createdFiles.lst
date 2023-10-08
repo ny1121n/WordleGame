@@ -1,0 +1,4 @@
+com/example/wordle/Word.class
+com/example/wordle/GlobalExceptionHandler.class
+com/example/wordle/WordleApplication.class
+com/example/wordle/GameController.class
